@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import MainEditor from './MainEditor';
 
-export default class App extends Component {
-  constructor () {
-    super()
-    this.state = { text: '' }
+const appContainerStyle = {
+  display: 'flex',
+};
+
+const h1Style = {
+  fontFamily: 'Osaka, sans-serif',
+};
+
+const mapStateToProps = (state) => ({
+  editorState: state.editorState,
+});
+
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.onChange = () => {};
   }
-  render () {
+  render() {
     return (
       <div>
-        <h1>今は何をしている？</h1>
+        <h1 style={h1Style}>今は？</h1>
         <section>
           <MainEditor />
         </section>
         <section>
-          {this.state.text}
         </section>
       </div>
     );
   }
 }
+
+export default connect(mapStateToProps)(App);
